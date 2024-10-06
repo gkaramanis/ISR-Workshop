@@ -1,0 +1,17 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;700&display=swap');
+
+/* Apply fonts to elements */
+body, .reveal {
+  font-family: 'Roboto', sans-serif !important;
+}
+
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+  font-family: 'Playfair Display', serif !important;
+  font-size: 1.5em !important;
+}
+
+/* Optional: Create a class for compact text if needed */
+.compact {
+  font-weight: 700; /* Using bold weight for 'compact' style */
+}

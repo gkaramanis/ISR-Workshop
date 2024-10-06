@@ -1,0 +1,510 @@
+---
+title: "ISR ggplot2 Workshop"
+author: "Georgios Karamanis"
+format: 
+  live-revealjs:
+    controls: true
+    controls-layout: bottom-right
+    smaller: true
+    footer: ISR ggplot2 workshop · Georgios Karamanis
+    css: custom.css
+engine: knitr
+resources:
+  - "data"
+webr:
+  packages:
+    - ggplot2
+live:
+  show-hints: true
+  show-solutions: true
+---
+
+{{< include ./_extensions/r-wasm/live/_knitr.qmd >}}
+
+## A very short introduction to ggplot2
+
+ggplot2 is a powerful and flexible R package for creating data visualizations. It's based on the Grammar of Graphics, a systematic approach to describing the components of a graphic.
+
+![Artwork by @allison_horst](images/ggplot-ah.png){width="50%"}
+
+
+------------------------------------------------------------------------
+
+## Key features of ggplot2
+
+-   Consistent and intuitive syntax\
+-   Layered approach to building plots\
+-   Wide range of plot types and customization options\
+-   Excellent for both quick exploratory plots and publication-quality graphics
+
+![](images/ggplot-gog.png){width="30%"}
+
+------------------------------------------------------------------------
+
+## Basic ggplot2 structure
+
+A typical ggplot2 command has this structure:
+
+``` r
+ggplot(data = <DATA>) +
+  <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
+```
+
+-   `ggplot()`: Initializes the plot
+-   `data`: The dataset you're using
+-   `geom_function()`: Determines the type of plot (e.g., `geom_point()`, `geom_line()`)
+-   `aes()`: Defines how variables are mapped to visual properties
+
+Example:
+
+``` r
+ggplot(data = mtcars, aes(x = mpg, y = wt)) +
+  geom_point()
+```
+
+------------------------------------------------------------------------
+
+For the exercises we will use two datasets,  [palmerpenguins](https://allisonhorst.github.io/palmerpenguins/) and [friends_info](https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-09-08/readme.md)
+
+::: columns
+![](images/lter_penguins.png){width="30%"} ![](images/culmen_depth.png){width="30%"} ![](images/friends.jpg){width="60%"}
+:::
+
+------------------------------------------------------------------------
+
+```{webr}
+#| warning: false
+#| context: setup
+#| include: false
+#| cache: true
+#| autorun: true
+palmerpenguins <- read.csv("data/palmerpenguins.csv")
+friends_info <- read.csv("data/friends_info.csv")
+friends_info$air_date <- as.Date(friends_info$air_date)
+friends_info$season <- as.factor(friends_info$season)
+```
+
+Before plotting, let's look at different ways to view datasets
+
+This displays the entire dataset, which can be overwhelming for large datasets.
+
+```{webr}
+#| warning: false
+palmerpenguins
+```
+
+------------------------------------------------------------------------
+
+`head()` shows the first 6 rows of the dataset, giving you a quick preview of the data structure.
+
+```{webr}
+#| warning: false
+head(palmerpenguins)
+```
+
+------------------------------------------------------------------------
+
+`colnames()` lists all column names in the dataset, useful for identifying available variables.
+
+```{webr}
+#| warning: false
+colnames(palmerpenguins)
+```
+
+------------------------------------------------------------------------
+
+`summary()` provides a statistical overview of each column, including min, max, mean, and quartiles for numeric data.
+
+```{webr}
+#| warning: false
+summary(palmerpenguins)
+```
+
+------------------------------------------------------------------------
+
+### Guideline 1: Create the simplest graph that conveys the information you want to convey
+
+![](images/guideline1.jpg){width="40%"}
+
+------------------------------------------------------------------------
+
+```{webr}
+#| warning: false
+ggplot(data = palmerpenguins, aes(x = bill_length_mm, y = body_mass_g)) +
+  geom_point()
+```
+
+:::: hint
+::: {.callout-note collapse="false"}
+## Other ways to write the same code
+
+```         
+ggplot(palmerpenguins, aes(bill_length_mm, body_mass_g)) +
+  geom_point()
+  
+ggplot(palmerpenguins) +
+  geom_point(aes(bill_length_mm, body_mass_g))
+```
+:::
+::::
+
+------------------------------------------------------------------------
+
+```{webr}
+#| warning: false
+ggplot(data = palmerpenguins, aes(x = body_mass_g)) +
+  geom_histogram()
+```
+
+------------------------------------------------------------------------
+
+Make a line plot using the `friends_info` dataset
+
+First, write the code to view the first lines of the dataset and choose your variables for the x-axis (should be a time variable) and y-axis.
+
+Then, write the code to make the line chart using `geom_line()`
+
+:::::: panel-tabset
+## Exercise
+
+```{webr}
+#| warning: false
+
+```
+
+## Hint
+
+:::: hint
+::: {.callout-note collapse="false"}
+## Hint
+
+1.  Use `head(friends_info)` to view the first few rows of the dataset.
+
+2.  For the x-axis, look for a date column (hint: `air_date`).
+
+3.  For the y-axis, consider using `us_views_millions`.
+
+:::
+::::
+
+## Solution
+
+::: solution
+``` r
+head(friends_info)
+
+ggplot(friends_info, aes(x = air_date, y = us_views_millions)) +  
+  geom_line()
+```
+:::
+::::::
+
+------------------------------------------------------------------------
+
+Thanks to ggplot2's structure, we can easily add multiple visualizations
+
+```{webr}
+#| warning: false
+ggplot(friends_info, aes(x = air_date, y = us_views_millions)) +  
+  geom_line() +
+  geom_point() +
+  geom_smooth()
+```
+
+------------------------------------------------------------------------
+
+### Guideline 2: Consider the type of encoding object and attribute used to create a plot
+
+![](images/guideline2.jpg){width="40%"}
+
+------------------------------------------------------------------------
+
+First, run the code below to create a scatter plot (spatial position for encoding).\
+Then, add `color = species` inside `aes()` to add color encoding and rerun the code.\
+Finally, add `shape = sex` inside `aes()` and rerun the code.
+
+```{webr}
+#| warning: false
+ggplot(palmerpenguins, aes(x = bill_length_mm, y = body_mass_g)) +
+  geom_point()
+```
+
+------------------------------------------------------------------------
+
+### Guideline 3: Focus on visualizing patterns or on visualizing details, depending on the purpose of the plot
+
+![](images/guideline3.jpg){width="40%"}
+
+------------------------------------------------------------------------
+
+Visualizing details
+
+```{webr}
+#| warning: false
+ggplot(palmerpenguins, aes(x = bill_length_mm, y = body_mass_g, color = species)) +
+  geom_point()
+```
+
+------------------------------------------------------------------------
+
+Visualizing patterns
+
+```{webr}
+#| warning: false
+ggplot(palmerpenguins, aes(x = species, y = body_mass_g, group = species)) +
+  geom_boxplot()
+```
+
+------------------------------------------------------------------------
+
+Make a box plot for `friends_info`\
+1. Copy the code from the previous slide and paste it in the box below\
+2. Replace the dataset name with `friends_info`, use `season` for `y` and `us_views_millions` for `y`
+
+:::::: panel-tabset
+## Exercise
+
+```{webr}
+#| warning: false
+```
+
+## Solution
+
+::: solution
+``` r
+ggplot(friends_info, aes(x = season, y = us_views_millions, group = season)) +
+  geom_boxplot()
+```
+:::
+::::::
+
+<br> Compare to the line chart we made before
+
+```{webr}
+#| warning: false
+ggplot(friends_info, aes(x = air_date, y = us_views_millions)) +  
+  geom_line()
+```
+
+------------------------------------------------------------------------
+
+A good way to easily see patterns is a heatmap
+
+```{webr}
+#| warning: false
+ggplot(friends_info, aes(x = episode, y = season, fill = imdb_rating)) +
+  geom_tile()
+```
+
+------------------------------------------------------------------------
+
+### Guideline 4: Select meaningful axis ranges
+
+![](images/guideline4.jpg){width="40%"}
+
+------------------------------------------------------------------------
+
+ggplot2 automatically adjusts the axes depending on variable values
+
+```{webr}
+#| warning: false
+ggplot(friends_info, aes(x = air_date, y = us_views_millions)) +  
+  geom_line()
+```
+
+------------------------------------------------------------------------
+
+But we can change them!\
+1. Run the code.\
+2. Add `limits = c(0, 100)` inside `scale_y_continuous()` and rerun\
+3. Change the numbers in `limits` and see what happens to the line
+
+```{webr}
+#| warning: false
+ggplot(friends_info, aes(x = air_date, y = us_views_millions)) +  
+  geom_line() +
+  scale_y_continuous()
+```
+
+------------------------------------------------------------------------
+
+### Guideline 5: Data transformations and carefully chosen graph aspect ratios can be used to emphasize rates of change for time-series data
+
+![](images/guideline5.jpg){width="40%"}
+
+------------------------------------------------------------------------
+
+Let's look at ggplot2's [mammals sleep dataset](https://ggplot2.tidyverse.org/reference/msleep.html)\
+It's impossible to distinguish the points close to 0 when using continuous scales
+
+```{webr}
+#| warning: false
+ggplot(msleep, aes(x = bodywt, y = brainwt, size = sleep_total, color = vore)) +
+  geom_point() +
+  labs(
+    x = "Body weight (kg)",
+    y = "Brain weight (kg)",
+    size = "Total amount of sleep (hours)"
+  )
+```
+
+------------------------------------------------------------------------
+
+Let's see the distribution of body weight
+
+```{webr}
+#| warning: false
+ggplot(msleep, aes(x = bodywt)) +
+  geom_histogram() +
+  labs(x = "Body weight (kg)")
+```
+
+------------------------------------------------------------------------
+
+We can use logarithmic scales for both x and y\
+1. Run the code\
+2. Remove either the line with `scale_x_log10()` or `scale_y_log10()` and rerun the code
+
+```{webr}
+#| warning: false
+# "Turn off" scientific notation for axis numbers
+options(scipen = 1000)
+
+ggplot(msleep, aes(x = bodywt, y = brainwt, size = sleep_total, color = vore)) +
+  geom_point() +
+  scale_x_log10() +
+  scale_y_log10() +
+  labs(
+    x = "Body weight (kg)",
+    y = "Brain weight (kg)",
+    size = "Total amount of sleep (hours)"
+  )
+```
+
+
+------------------------------------------------------------------------
+
+### Guideline 6: Plot overlapping points in a way that density differences become apparent in scatter plots
+
+![](images/guideline6.jpg)
+
+------------------------------------------------------------------------
+
+Let's plot `imdb_rating` and `us_views_millions` from `friends_info` with really big points so that they overlap a lot
+
+```{webr}
+#| warning: false
+ggplot(friends_info, aes(imdb_rating, us_views_millions)) +
+  geom_point(size = 5)
+```
+
+------------------------------------------------------------------------
+
+We can reduce the opacity of the points by using a lower alpha value\
+The highest value is 1 (default) and the lowest is 0\
+1. Add `alpha = 0.5` inside `geom_point()` and run the code\
+2. Try out different values and rerun the code
+
+```{webr}
+#| warning: false
+ggplot(friends_info, aes(imdb_rating, us_views_millions)) +
+  geom_point(size = 5)
+```
+
+------------------------------------------------------------------------
+
+### Pitfall: Vertical axis text
+
+------------------------------------------------------------------------
+
+Run the code and see how the labels on the x-axis overlap\
+1. Change the `angle` in the last line to rotate the text and rerun the code\
+2. Set the `angle` back to 0 and then switch the `x` and `y` variables\
+3. Rerun the code
+
+```{webr}
+#| warning: false
+ggplot(friends_info) +
+  geom_boxplot(aes(x = directed_by, y = imdb_rating)) +
+  theme(axis.text.x = element_text(angle = 0))
+```
+
+------------------------------------------------------------------------
+
+### Pitfall: Rainbow color scale
+
+------------------------------------------------------------------------
+
+Run the code to see a heatmap with the default rainbow scale in R
+
+```{webr}
+#| warning: false
+ggplot(friends_info) +
+  geom_tile(aes(x = episode, y = season, fill = imdb_rating)) +
+  scale_fill_gradientn(colors = rainbow(7))
+```
+
+------------------------------------------------------------------------
+
+Run the code to see a better rainbow scale\
+1. Replace `turbo` with one of the other scale names: viridis, magma, plasma, mako\
+2. Rerun the code
+
+```{webr}
+#| warning: false
+ggplot(friends_info) +
+  geom_tile(aes(x = episode, y = season, fill = imdb_rating)) +
+    scale_fill_viridis_c(option = "turbo")
+```
+
+------------------------------------------------------------------------
+
+![That's all! But if you have time, one last challenge awaits on the next slide!](images/fireworks.gif)
+---
+
+### Final exercise: Putting it all together
+
+---
+
+Create a scatter plot using the `palmerpenguins` dataset that shows:\
+- `bill_length_mm` vs `bill_depth_mm`\
+- `body_mass_g` as point size\ and `species` as color\
+- Use a viridis color scale\
+- Add a trend line for each species
+
+:::: {.panel-tabset}
+
+## Exercise
+
+```{webr}
+#| warning: false
+```
+
+## Hint
+
+::: {.hint}
+::: {.callout-note collapse="false"}
+## Hint
+1. Start with `ggplot(palmerpenguins, aes(...))`
+2. Use `geom_point()` for the scatter plot
+3. Map `species` to `color` and `body_mass_g` to `size` in `aes()`
+4. Use `scale_color_viridis_d()` for the color scale
+5. Add `geom_smooth()` for trend lines
+:::
+:::
+
+## Solution
+
+::: { .solution }
+```r
+ggplot(palmerpenguins, 
+       aes(x = bill_length_mm, y = bill_depth_mm, 
+           color = species, size = body_mass_g)) +
+  geom_point(alpha = 0.7) +
+  geom_smooth(aes(group = species)) +
+  scale_color_viridis_d() +
+  theme_minimal()
+```
+:::
+
+::::

@@ -25,7 +25,7 @@ live:
 
 ggplot2 is a powerful and flexible R package for creating data visualizations. It's based on the Grammar of Graphics, a systematic approach to describing the components of a graphic.
 
-![Artwork by @allison_horst](images/ggplot-ah.png){width="50%"}
+![Artwork by Allison Horst](images/ggplot-ah.png){width="50%"}
 
 
 ------------------------------------------------------------------------
@@ -37,6 +37,7 @@ ggplot2 is a powerful and flexible R package for creating data visualizations. I
 -   Wide range of plot types and customization options\
 -   Excellent for both quick exploratory plots and publication-quality graphics
 
+![](images/ggplot-layers.png){width="65%"}
 ![](images/ggplot-gog.png){width="30%"}
 
 ------------------------------------------------------------------------
@@ -64,7 +65,7 @@ ggplot(data = mtcars, aes(x = mpg, y = wt)) +
 
 ------------------------------------------------------------------------
 
-For the exercises we will use two datasets,  [palmerpenguins](https://allisonhorst.github.io/palmerpenguins/) and [friends_info](https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-09-08/readme.md)
+For the exercises we will use two datasets, [palmerpenguins](https://allisonhorst.github.io/palmerpenguins/) and [friends_info](https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-09-08/readme.md). Don't worry about installing or downloading anything - these datasets are already loaded for you. The links are just for more information about the data.
 
 ::: columns
 ![](images/lter_penguins.png){width="30%"} ![](images/culmen_depth.png){width="30%"} ![](images/friends.jpg){width="60%"}
@@ -84,7 +85,7 @@ friends_info$air_date <- as.Date(friends_info$air_date)
 friends_info$season <- as.factor(friends_info$season)
 ```
 
-Before plotting, let's look at different ways to view datasets
+Before plotting, let's look at different ways to view datasets.
 
 This displays the entire dataset, which can be overwhelming for large datasets.
 
@@ -122,11 +123,22 @@ summary(palmerpenguins)
 
 ------------------------------------------------------------------------
 
+## Code examples and exercises
+
+In the following slides, we'll explore practical examples and exercises based on the data visualization guidelines and pitfalls we discussed. Each section will:
+
+- Demonstrate the guideline or pitfall with code examples
+- Give you a chance to practice with exercises
+
+------------------------------------------------------------------------
+
 ### Guideline 1: Create the simplest graph that conveys the information you want to convey
 
 ![](images/guideline1.jpg){width="40%"}
 
 ------------------------------------------------------------------------
+
+A scatter plot is one of the simplest ways to show relationships between two variables:
 
 ```{webr}
 #| warning: false
@@ -150,6 +162,8 @@ ggplot(palmerpenguins) +
 
 ------------------------------------------------------------------------
 
+For single variables, a histogram effectively shows their distribution:
+
 ```{webr}
 #| warning: false
 ggplot(data = palmerpenguins, aes(x = body_mass_g)) +
@@ -160,7 +174,7 @@ ggplot(data = palmerpenguins, aes(x = body_mass_g)) +
 
 Make a line plot using the `friends_info` dataset
 
-First, write the code to view the first lines of the dataset and choose your variables for the x-axis (should be a time variable) and y-axis.
+First, write the code to view the first lines of the dataset. Then, choose your variables, one time variable for the x-axis and one for the y-axis.
 
 Then, write the code to make the line chart using `geom_line()`
 
@@ -176,6 +190,7 @@ Then, write the code to make the line chart using `geom_line()`
 
 :::: hint
 ::: {.callout-note collapse="false"}
+
 ## Hint
 
 1.  Use `head(friends_info)` to view the first few rows of the dataset.
@@ -259,7 +274,7 @@ ggplot(palmerpenguins, aes(x = species, y = body_mass_g, group = species)) +
 
 Make a box plot for `friends_info`\
 1. Copy the code from the previous slide and paste it in the box below\
-2. Replace the dataset name with `friends_info`, use `season` for `x` and `us_views_millions` for `y`
+2. Replace the dataset name with `friends_info`, use `season` for `x` and `group` and `us_views_millions` for `y`
 
 :::::: panel-tabset
 ## Exercise
@@ -334,7 +349,8 @@ ggplot(friends_info, aes(x = air_date, y = us_views_millions)) +
 
 ------------------------------------------------------------------------
 
-Let's look at ggplot2's [mammals sleep dataset](https://ggplot2.tidyverse.org/reference/msleep.html)\
+While Guideline 5 focuses on time series, the same principle applies to any variables with large ranges. Let's look at ggplot2's [mammals sleep dataset](https://ggplot2.tidyverse.org/reference/msleep.html).\ 
+
 It's impossible to distinguish the points close to 0 when using continuous scales
 
 ```{webr}
@@ -350,7 +366,7 @@ ggplot(msleep, aes(x = bodywt, y = brainwt, size = sleep_total, color = vore)) +
 
 ------------------------------------------------------------------------
 
-Let's see the distribution of body weight
+Let's see the distribution of body weight - notice how most values are clustered near zero.
 
 ```{webr}
 #| warning: false
@@ -361,8 +377,9 @@ ggplot(msleep, aes(x = bodywt)) +
 
 ------------------------------------------------------------------------
 
-We can use logarithmic scales for both x and y\
-1. Run the code\
+We can use logarithmic scales for both x and y to better reveal patterns across different magnitudes of weight.
+
+1. Run the code\ 
 2. Remove either the line with `scale_x_log10()` or `scale_y_log10()` and rerun the code
 
 ```{webr}
@@ -404,7 +421,7 @@ We can reduce the opacity of the points by using a lower alpha value\
 The highest value is 1 (default) and the lowest is 0\
 1. Add `alpha = 0.5` inside `geom_point()` and run the code\
 2. Try out different values and rerun the code
-
+ 
 ```{webr}
 #| warning: false
 ggplot(friends_info, aes(imdb_rating, us_views_millions)) +
@@ -414,6 +431,8 @@ ggplot(friends_info, aes(imdb_rating, us_views_millions)) +
 ------------------------------------------------------------------------
 
 ### Pitfall: Vertical axis text
+
+![](images/pitfall_verticaltext.jpg)
 
 ------------------------------------------------------------------------
 
@@ -432,6 +451,8 @@ ggplot(friends_info) +
 ------------------------------------------------------------------------
 
 ### Pitfall: Rainbow color scale
+
+![](images/pitfall_rainbow.jpg)
 
 ------------------------------------------------------------------------
 
@@ -454,7 +475,7 @@ Run the code to see a better rainbow scale\
 #| warning: false
 ggplot(friends_info) +
   geom_tile(aes(x = episode, y = season, fill = imdb_rating)) +
-    scale_fill_viridis_c(option = "turbo")
+    scale_fill_viridis_c(option = "turbo", direction = -1)
 ```
 
 ------------------------------------------------------------------------
@@ -463,6 +484,8 @@ ggplot(friends_info) +
 ---
 
 ### Final exercise: Putting it all together
+
+![](images/meme.jpg)
 
 ---
 

@@ -266,7 +266,7 @@ Visualizing patterns
 
 ```{webr}
 #| warning: false
-ggplot(palmerpenguins, aes(x = species, y = body_mass_g, group = species)) +
+ggplot(palmerpenguins, aes(x = species, y = body_mass_g)) +
   geom_boxplot()
 ```
 

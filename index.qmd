@@ -196,7 +196,7 @@ Then, write the code to make the line chart using `geom_line()`
 
 1.  Use `head(friends_info)` to view the first few rows of the dataset.
 
-2.  For the x-axis, look for a date column (hint: `air_date`).
+2.  For the x-axis, look for a date column.
 
 3.  For the y-axis, consider using `us_views_millions`.
 
@@ -352,7 +352,7 @@ ggplot(friends_info, aes(x = air_date, y = us_views_millions)) +
 
 While Guideline 5 focuses on time series, the same principle applies to any variables with large ranges. Let's look at ggplot2's [mammals sleep dataset](https://ggplot2.tidyverse.org/reference/msleep.html).\ 
 
-It's impossible to distinguish the points close to 0 when using continuous scales
+Run the following code and notice that it's impossible to distinguish the points close to 0 when using continuous scales
 
 ```{webr}
 #| warning: false
@@ -380,8 +380,8 @@ ggplot(msleep, aes(x = bodywt)) +
 
 We can use logarithmic scales for both x and y to better reveal patterns across different magnitudes of weight.
 
-1. Run the code\ 
-2. Remove either the line with `scale_x_log10()` or `scale_y_log10()` and rerun the code
+1. Run the code\
+2. Remove one of the lines with `scale_*_log10()` and rerun the code
 
 ```{webr}
 #| warning: false
@@ -439,7 +439,7 @@ ggplot(friends_info, aes(imdb_rating, us_views_millions)) +
 
 Run the code and see how the labels on the x-axis overlap\
 1. Change the `angle` in the last line to rotate the text and rerun the code\
-2. Set the `angle` back to 0 and then switch the `x` and `y` variables\
+2. Set the `angle` back to 0 and then switch the `x` and `y` variables in line 2\
 3. Rerun the code
 
 ```{webr}
@@ -482,9 +482,11 @@ ggplot(friends_info) +
 ------------------------------------------------------------------------
 
 ![That's all! But if you have time, one last challenge awaits on the next slide!](images/fireworks.gif)
+
 ---
 
 ### Final exercise: Putting it all together
+
 
 ![](images/meme.jpg)
 

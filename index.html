@@ -409,7 +409,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsIndhcm5pbmciOmZhbHNlfSwiY29kZSI6IiJ9
 <div class="callout-content">
 <ol type="1">
 <li><p>Use <code>head(friends_info)</code> to view the first few rows of the dataset.</p></li>
-<li><p>For the x-axis, look for a date column (hint: <code>air_date</code>).</p></li>
+<li><p>For the x-axis, look for a date column.</p></li>
 <li><p>For the y-axis, consider using <code>us_views_millions</code>.</p></li>
 </ol>
 </div>
@@ -596,7 +596,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsIndhcm5pbmciOmZhbHNlfSwiY29kZSI6Imdn
 <section class="slide level2">
 
 <p>While Guideline 5 focuses on time series, the same principle applies to any variables with large ranges. Let’s look at ggplot2’s <a href="https://ggplot2.tidyverse.org/reference/msleep.html">mammals sleep dataset</a>.&nbsp;</p>
-<p>It’s impossible to distinguish the points close to 0 when using continuous scales</p>
+<p>Run the following code and notice that it’s impossible to distinguish the points close to 0 when using continuous scales</p>
 <div class="cell">
 <div>
 <div id="webr-18" class="exercise-cell">
@@ -626,8 +626,9 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsIndhcm5pbmciOmZhbHNlfSwiY29kZSI6Imdn
 
 <p>We can use logarithmic scales for both x and y to better reveal patterns across different magnitudes of weight.</p>
 <ol type="1">
-<li>Run the code&nbsp;</li>
-<li>Remove either the line with <code>scale_x_log10()</code> or <code>scale_y_log10()</code> and rerun the code</li>
+<li>Run the code<br>
+</li>
+<li>Remove one of the lines with <code>scale_*_log10()</code> and rerun the code</li>
 </ol>
 <div class="cell">
 <div>
@@ -685,7 +686,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsIndhcm5pbmciOmZhbHNlfSwiY29kZSI6Imdn
 
 <p>Run the code and see how the labels on the x-axis overlap<br>
 1. Change the <code>angle</code> in the last line to rotate the text and rerun the code<br>
-2. Set the <code>angle</code> back to 0 and then switch the <code>x</code> and <code>y</code> variables<br>
+2. Set the <code>angle</code> back to 0 and then switch the <code>x</code> and <code>y</code> variables in line 2<br>
 3. Rerun the code</p>
 <div class="cell">
 <div>
@@ -733,11 +734,15 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsIndhcm5pbmciOmZhbHNlfSwiY29kZSI6Imdn
 </div>
 </div>
 </section>
-<section id="thats-all-but-if-you-have-time-one-last-challenge-awaits-on-the-next-slide" class="slide level2">
-<h2><img data-src="images/fireworks.gif" alt="That’s all! But if you have time, one last challenge awaits on the next slide!"></h2>
+<section class="slide level2">
+
+
+<img data-src="images/fireworks.gif" class="r-stretch quarto-figure-center"><p class="caption">That’s all! But if you have time, one last challenge awaits on the next slide!</p></section>
+<section class="slide level2">
+
 <h3 id="final-exercise-putting-it-all-together">Final exercise: Putting it all together</h3>
-<p><img data-src="images/meme.jpg"></p>
-</section>
+
+<img data-src="images/meme.jpg" class="r-stretch"></section>
 <section class="slide level2">
 
 <p>Create a scatter plot using the <code>palmerpenguins</code> dataset that shows:<br>

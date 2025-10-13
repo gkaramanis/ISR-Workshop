@@ -5,6 +5,7 @@ format:
   live-revealjs:
     controls: true
     controls-layout: bottom-right
+    controls-tutorial: true
     smaller: true
     footer: ISR ggplot2 workshop · Georgios Karamanis
     css: custom.css

@@ -275,7 +275,7 @@ ggplot(palmerpenguins, aes(x = species, y = body_mass_g)) +
 
 Make a box plot for `friends_info`\
 1. Copy the code from the previous slide and paste it in the box below\
-2. Replace the dataset name with `friends_info`, use `season` for `x` and `group` and `us_views_millions` for `y`
+2. Replace the dataset name with `friends_info`, use `season` for `x` and `us_views_millions` for `y`
 
 :::::: panel-tabset
 ## Exercise
@@ -288,7 +288,7 @@ Make a box plot for `friends_info`\
 
 ::: solution
 ``` r
-ggplot(friends_info, aes(x = season, y = us_views_millions, group = season)) +
+ggplot(friends_info, aes(x = season, y = us_views_millions)) +
   geom_boxplot()
 ```
 :::

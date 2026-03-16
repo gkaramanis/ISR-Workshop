@@ -501,7 +501,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsIndhcm5pbmciOmZhbHNlfSwiY29kZSI6Imdn
 
 <p>Make a box plot for <code>friends_info</code><br>
 1. Copy the code from the previous slide and paste it in the box below<br>
-2. Replace the dataset name with <code>friends_info</code>, use <code>season</code> for <code>x</code> and <code>group</code> and <code>us_views_millions</code> for <code>y</code></p>
+2. Replace the dataset name with <code>friends_info</code>, use <code>season</code> for <code>x</code> and <code>us_views_millions</code> for <code>y</code></p>
 <div class="panel-tabset">
 <ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Exercise</a></li><li><a href="#tabset-2-2">Solution</a></li></ul>
 <div class="tab-content">
@@ -520,7 +520,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsIndhcm5pbmciOmZhbHNlfSwiY29kZSI6IiJ9
 <div id="tabset-2-2">
 <div class="proof solution">
 <p><span class="proof-title"><em>Solution</em>. </span></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="fu">ggplot</span>(friends_info, <span class="fu">aes</span>(<span class="at">x =</span> season, <span class="at">y =</span> us_views_millions, <span class="at">group =</span> season)) <span class="sc">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="fu">ggplot</span>(friends_info, <span class="fu">aes</span>(<span class="at">x =</span> season, <span class="at">y =</span> us_views_millions)) <span class="sc">+</span></span>
 <span id="cb5-2"><a href=""></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>

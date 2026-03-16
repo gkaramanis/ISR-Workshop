@@ -66,7 +66,7 @@ ggplot(data = mtcars, aes(x = mpg, y = wt)) +
 
 ------------------------------------------------------------------------
 
-For the exercises we will use two datasets, [palmerpenguins](https://allisonhorst.github.io/palmerpenguins/) and [friends_info](https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-09-08/readme.md). Don't worry about installing or downloading anything - these datasets are already loaded for you. The links are just for more information about the data.
+For the exercises we will use two datasets, [palmerpenguins](https://allisonhorst.github.io/palmerpenguins/) and [friends_info](https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-09-08/readme.md). Don't worry about installing or downloading anything, the datasets are already loaded for you. The links are for more information about the data.
 
 ::: columns
 ![](images/lter_penguins.png){width="30%"} ![](images/culmen_depth.png){width="30%"} ![](images/friends.jpg){width="60%"}

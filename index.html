@@ -97,7 +97,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-05d665242d5d17322b0f05887a004c01.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
   <link rel="stylesheet" href="custom.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -230,8 +230,8 @@ Georgios Karamanis
 <section id="basic-ggplot2-structure" class="slide level2">
 <h2>Basic ggplot2 structure</h2>
 <p>A typical ggplot2 command has this structure:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="sc">&lt;</span>DATA<span class="sc">&gt;</span>) <span class="sc">+</span></span>
-<span id="cb1-2"><a href=""></a>  <span class="er">&lt;</span>GEOM_FUNCTION<span class="sc">&gt;</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="sc">&lt;</span>MAPPINGS<span class="sc">&gt;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="sc">&lt;</span>DATA<span class="sc">&gt;</span>) <span class="sc">+</span></span>
+<span id="cb1-2"><a href=""></a>  <span class="er">&lt;</span>GEOM_FUNCTION<span class="sc">&gt;</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="sc">&lt;</span>MAPPINGS<span class="sc">&gt;</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li><code>ggplot()</code>: Initializes the plot</li>
 <li><code>data</code>: The dataset you’re using</li>
@@ -239,12 +239,12 @@ Georgios Karamanis
 <li><code>aes()</code>: Defines how variables are mapped to visual properties</li>
 </ul>
 <p>Example:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="fu">aes</span>(<span class="at">x =</span> mpg, <span class="at">y =</span> wt)) <span class="sc">+</span></span>
-<span id="cb2-2"><a href=""></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="fu">aes</span>(<span class="at">x =</span> mpg, <span class="at">y =</span> wt)) <span class="sc">+</span></span>
+<span id="cb2-2"><a href=""></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section class="slide level2">
 
-<p>For the exercises we will use two datasets, <a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a> and <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-09-08/readme.md">friends_info</a>. Don’t worry about installing or downloading anything - these datasets are already loaded for you. The links are just for more information about the data.</p>
+<p>For the exercises we will use two datasets, <a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a> and <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-09-08/readme.md">friends_info</a>. Don’t worry about installing or downloading anything, the datasets are already loaded for you. The links are for more information about the data.</p>
 <div class="columns">
 <p><img data-src="images/lter_penguins.png" style="width:30.0%"> <img data-src="images/culmen_depth.png" style="width:30.0%"> <img data-src="images/friends.jpg" style="width:60.0%"></p>
 </div>
@@ -420,10 +420,10 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsIndhcm5pbmciOmZhbHNlfSwiY29kZSI6IiJ9
 <div id="tabset-1-3">
 <div class="proof solution">
 <p><span class="proof-title"><em>Solution</em>. </span></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">head</span>(friends_info)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">head</span>(friends_info)</span>
 <span id="cb4-2"><a href=""></a></span>
 <span id="cb4-3"><a href=""></a><span class="fu">ggplot</span>(friends_info, <span class="fu">aes</span>(<span class="at">x =</span> air_date, <span class="at">y =</span> us_views_millions)) <span class="sc">+</span>  </span>
-<span id="cb4-4"><a href=""></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-4"><a href=""></a>  <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -520,8 +520,8 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsIndhcm5pbmciOmZhbHNlfSwiY29kZSI6IiJ9
 <div id="tabset-2-2">
 <div class="proof solution">
 <p><span class="proof-title"><em>Solution</em>. </span></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="fu">ggplot</span>(friends_info, <span class="fu">aes</span>(<span class="at">x =</span> season, <span class="at">y =</span> us_views_millions, <span class="at">group =</span> season)) <span class="sc">+</span></span>
-<span id="cb5-2"><a href=""></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="fu">ggplot</span>(friends_info, <span class="fu">aes</span>(<span class="at">x =</span> season, <span class="at">y =</span> us_views_millions, <span class="at">group =</span> season)) <span class="sc">+</span></span>
+<span id="cb5-2"><a href=""></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -791,13 +791,13 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsIndhcm5pbmciOmZhbHNlfSwiY29kZSI6IiJ9
 <div id="tabset-3-3">
 <div class="proof solution">
 <p><span class="proof-title"><em>Solution</em>. </span></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">ggplot</span>(palmerpenguins, </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">ggplot</span>(palmerpenguins, </span>
 <span id="cb6-2"><a href=""></a>       <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm, </span>
 <span id="cb6-3"><a href=""></a>           <span class="at">color =</span> species, <span class="at">size =</span> body_mass_g)) <span class="sc">+</span></span>
 <span id="cb6-4"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
 <span id="cb6-5"><a href=""></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">group =</span> species)) <span class="sc">+</span></span>
 <span id="cb6-6"><a href=""></a>  <span class="fu">scale_color_viridis_d</span>() <span class="sc">+</span></span>
-<span id="cb6-7"><a href=""></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-7"><a href=""></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -1010,7 +1010,7 @@ WyJkYXRhL2ZyaWVuZHNfaW5mby5jc3YiLCJkYXRhL3BhbG1lcnBlbmd1aW5zLmNzdiJd
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],

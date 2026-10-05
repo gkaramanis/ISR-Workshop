@@ -1,7 +1,7 @@
 ---
 title: "ISR ggplot2 Workshop"
 author: "Georgios Karamanis"
-format: 
+format:
   live-revealjs:
     controls: true
     controls-layout: bottom-right
@@ -64,13 +64,13 @@ ggplot(data = mtcars, aes(x = mpg, y = wt)) +
   geom_point()
 ```
 
+`aes()` can go inside `ggplot()`, as here, or inside the geom, as in the template. Mappings in `ggplot()` apply to every layer.
+
 ------------------------------------------------------------------------
 
-For the exercises we will use two datasets, [palmerpenguins](https://allisonhorst.github.io/palmerpenguins/) and [friends_info](https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-09-08/readme.md). Don't worry about installing or downloading anything, the datasets are already loaded for you. The links are for more information about the data.
+For the exercises we will use two main datasets, [palmerpenguins](https://allisonhorst.github.io/palmerpenguins/) and [friends_info](https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-09-08/readme.md). Don't worry about installing or downloading anything, the datasets are already loaded for you. The links are for more information about the data.
 
-::: columns
-![](images/lter_penguins.png){width="30%"} ![](images/culmen_depth.png){width="30%"} ![](images/friends.jpg){width="60%"}
-:::
+![](images/lter_penguins.png){width="25%"} ![](images/culmen_depth.png){width="25%"} ![](images/friends.jpg){width="45%"}
 
 ------------------------------------------------------------------------
 
@@ -78,9 +78,11 @@ For the exercises we will use two datasets, [palmerpenguins](https://allisonhors
 #| warning: false
 #| context: setup
 #| include: false
-#| cache: true
 #| autorun: true
 palmerpenguins <- read.csv("data/palmerpenguins.csv")
+palmerpenguins$species <- as.factor(palmerpenguins$species)
+palmerpenguins$island <- as.factor(palmerpenguins$island)
+palmerpenguins$sex <- as.factor(palmerpenguins$sex)
 friends_info <- read.csv("data/friends_info.csv")
 friends_info$air_date <- as.Date(friends_info$air_date)
 friends_info$season <- as.factor(friends_info$season)
@@ -115,7 +117,7 @@ colnames(palmerpenguins)
 
 ------------------------------------------------------------------------
 
-`summary()` provides a statistical overview of each column, including min, max, mean, and quartiles for numeric data.
+`summary()` provides a statistical overview of each column, including min, max, mean, and quartiles for numeric data, and counts for categories.
 
 ```{webr}
 #| warning: false
@@ -151,10 +153,10 @@ ggplot(data = palmerpenguins, aes(x = bill_length_mm, y = body_mass_g)) +
 ::: {.callout-note collapse="false"}
 ## Other ways to write the same code
 
-```         
+```
 ggplot(palmerpenguins, aes(bill_length_mm, body_mass_g)) +
   geom_point()
-  
+
 ggplot(palmerpenguins) +
   geom_point(aes(bill_length_mm, body_mass_g))
 ```
@@ -209,7 +211,7 @@ Then, write the code to make the line chart using `geom_line()`
 ``` r
 head(friends_info)
 
-ggplot(friends_info, aes(x = air_date, y = us_views_millions)) +  
+ggplot(friends_info, aes(x = air_date, y = us_views_millions)) +
   geom_line()
 ```
 :::
@@ -221,7 +223,7 @@ Thanks to ggplot2's structure, we can easily add multiple visualizations
 
 ```{webr}
 #| warning: false
-ggplot(friends_info, aes(x = air_date, y = us_views_millions)) +  
+ggplot(friends_info, aes(x = air_date, y = us_views_millions)) +
   geom_line() +
   geom_point() +
   geom_smooth()
@@ -298,7 +300,7 @@ ggplot(friends_info, aes(x = season, y = us_views_millions)) +
 
 ```{webr}
 #| warning: false
-ggplot(friends_info, aes(x = air_date, y = us_views_millions)) +  
+ggplot(friends_info, aes(x = air_date, y = us_views_millions)) +
   geom_line()
 ```
 
@@ -324,7 +326,7 @@ ggplot2 automatically adjusts the axes depending on variable values
 
 ```{webr}
 #| warning: false
-ggplot(friends_info, aes(x = air_date, y = us_views_millions)) +  
+ggplot(friends_info, aes(x = air_date, y = us_views_millions)) +
   geom_line()
 ```
 
@@ -335,24 +337,26 @@ But we can change them!\
 2. Add `limits = c(0, 100)` inside `scale_y_continuous()` and rerun\
 3. Change the numbers in `limits` and see what happens to the line
 
+Values outside the limits are dropped, so parts of the line can disappear.
+
 ```{webr}
 #| warning: false
-ggplot(friends_info, aes(x = air_date, y = us_views_millions)) +  
+ggplot(friends_info, aes(x = air_date, y = us_views_millions)) +
   geom_line() +
   scale_y_continuous()
 ```
 
 ------------------------------------------------------------------------
 
-### Guideline 5: Data transformations and carefully chosen graph aspect ratios can be used to emphasize rates of change for time-series data
+### Extra: Log scales for wide ranges
 
 ![](images/guideline5.jpg){width="40%"}
 
 ------------------------------------------------------------------------
 
-While Guideline 5 focuses on time series, the same principle applies to any variables with large ranges. Let's look at ggplot2's [mammals sleep dataset](https://ggplot2.tidyverse.org/reference/msleep.html).\ 
+This extra builds on Guideline 5 of the ten guidelines, which we skipped in the talk: data transformations and carefully chosen aspect ratios can emphasize rates of change in time series. The same idea applies to any variables with large ranges. Let's look at ggplot2's [mammals sleep dataset](https://ggplot2.tidyverse.org/reference/msleep.html).
 
-Run the following code and notice that it's impossible to distinguish the points close to 0 when using continuous scales
+Run the following code and notice that it's impossible to distinguish the points close to 0 when using linear scales
 
 ```{webr}
 #| warning: false
@@ -404,7 +408,7 @@ ggplot(msleep, aes(x = bodywt, y = brainwt, size = sleep_total, color = vore)) +
 
 ### Guideline 6: Plot overlapping points in a way that density differences become apparent in scatter plots
 
-![](images/guideline6.jpg)
+![](images/guideline6.jpg){width="40%"}
 
 ------------------------------------------------------------------------
 
@@ -422,7 +426,7 @@ We can reduce the opacity of the points by using a lower alpha value\
 The highest value is 1 (default) and the lowest is 0\
 1. Add `alpha = 0.5` inside `geom_point()` and run the code\
 2. Try out different values and rerun the code
- 
+
 ```{webr}
 #| warning: false
 ggplot(friends_info, aes(imdb_rating, us_views_millions)) +
@@ -433,7 +437,7 @@ ggplot(friends_info, aes(imdb_rating, us_views_millions)) +
 
 ### Pitfall: Vertical axis text
 
-![](images/pitfall_verticaltext.jpg)
+![](images/pitfall_verticaltext.jpg){width="40%"}
 
 ------------------------------------------------------------------------
 
@@ -453,11 +457,11 @@ ggplot(friends_info) +
 
 ### Pitfall: Rainbow color scale
 
-![](images/pitfall_rainbow.jpg)
+![](images/pitfall_rainbow.jpg){width="40%"}
 
 ------------------------------------------------------------------------
 
-Run the code to see a heatmap with the default rainbow scale in R
+Run the code to see a heatmap with base R's `rainbow()` palette
 
 ```{webr}
 #| warning: false
@@ -468,35 +472,37 @@ ggplot(friends_info) +
 
 ------------------------------------------------------------------------
 
-Run the code to see a better rainbow scale\
-1. Replace `turbo` with one of the other scale names: viridis, magma, plasma, mako\
-2. Rerun the code
+Run the code to see turbo, an improved rainbow scale\
+1. Replace `turbo` with a perceptually uniform scale: viridis, magma, plasma or mako\
+2. Rerun the code, then try removing `direction = -1`
 
 ```{webr}
 #| warning: false
 ggplot(friends_info) +
   geom_tile(aes(x = episode, y = season, fill = imdb_rating)) +
-    scale_fill_viridis_c(option = "turbo", direction = -1)
+  scale_fill_viridis_c(option = "turbo", direction = -1)
 ```
 
 ------------------------------------------------------------------------
 
-![That's all! But if you have time, one last challenge awaits on the next slide!](images/fireworks.gif)
+![That's all! But if you have time, one last challenge awaits on the next slides!](images/fireworks.gif)
 
 ---
 
 ### Final exercise: Putting it all together
 
 
-![](images/meme.jpg)
+![](images/meme.jpg){width="40%"}
 
 ---
 
-Create a scatter plot using the `palmerpenguins` dataset that shows:\
-- `bill_length_mm` vs `bill_depth_mm`\
-- `body_mass_g` as point size\ and `species` as color\
-- Use a viridis color scale\
-- Add a trend line for each species
+Create a scatter plot using the `palmerpenguins` dataset that shows:
+
+- `bill_length_mm` vs `bill_depth_mm`
+- `body_mass_g` as point size
+- `species` as color
+- a viridis color scale
+- a trend line for each species
 
 :::: {.panel-tabset}
 
@@ -513,7 +519,7 @@ Create a scatter plot using the `palmerpenguins` dataset that shows:\
 ## Hint
 1. Start with `ggplot(palmerpenguins, aes(...))`
 2. Use `geom_point()` for the scatter plot
-3. Map `species` to `color` and `body_mass_g` to `size` in `aes()`
+3. Map `species` to `color` in `ggplot(aes())` and `body_mass_g` to `size` in `geom_point(aes())`
 4. Use `scale_color_viridis_d()` for the color scale
 5. Add `geom_smooth()` for trend lines
 :::
@@ -523,11 +529,10 @@ Create a scatter plot using the `palmerpenguins` dataset that shows:\
 
 ::: { .solution }
 ```r
-ggplot(palmerpenguins, 
-       aes(x = bill_length_mm, y = bill_depth_mm, 
-           color = species, size = body_mass_g)) +
-  geom_point(alpha = 0.7) +
-  geom_smooth(aes(group = species)) +
+ggplot(palmerpenguins,
+       aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
+  geom_point(aes(size = body_mass_g), alpha = 0.7) +
+  geom_smooth() +
   scale_color_viridis_d() +
   theme_minimal()
 ```

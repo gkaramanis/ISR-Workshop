@@ -11,14 +11,9 @@ body, .reveal {
   font-size: 1.5em !important;
 }
 
-/* Optional: Create a class for compact text if needed */
-.compact {
-  font-weight: 700; /* Using bold weight for 'compact' style */
-}
-
 /* Color for < > controls */
 .reveal .controls {
-  color: #ff6b6b; /* Your color */
+  color: #ff6b6b;
 }
 
 /* Fix code autocomplete not visible in editor boxes */

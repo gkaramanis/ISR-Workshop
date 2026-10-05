@@ -241,13 +241,12 @@ Georgios Karamanis
 <p>Example:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="fu">aes</span>(<span class="at">x =</span> mpg, <span class="at">y =</span> wt)) <span class="sc">+</span></span>
 <span id="cb2-2"><a href=""></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>aes()</code> can go inside <code>ggplot()</code>, as here, or inside the geom, as in the template. Mappings in <code>ggplot()</code> apply to every layer.</p>
 </section>
 <section class="slide level2">
 
-<p>For the exercises we will use two datasets, <a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a> and <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-09-08/readme.md">friends_info</a>. Don’t worry about installing or downloading anything, the datasets are already loaded for you. The links are for more information about the data.</p>
-<div class="columns">
-<p><img data-src="images/lter_penguins.png" style="width:30.0%"> <img data-src="images/culmen_depth.png" style="width:30.0%"> <img data-src="images/friends.jpg" style="width:60.0%"></p>
-</div>
+<p>For the exercises we will use two main datasets, <a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a> and <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-09-08/readme.md">friends_info</a>. Don’t worry about installing or downloading anything, the datasets are already loaded for you. The links are for more information about the data.</p>
+<p><img data-src="images/lter_penguins.png" style="width:25.0%"> <img data-src="images/culmen_depth.png" style="width:25.0%"> <img data-src="images/friends.jpg" style="width:45.0%"></p>
 </section>
 <section class="slide level2">
 
@@ -257,7 +256,7 @@ Georgios Karamanis
 
 </div>
 <script type="webr-1-contents">
-eyJhdHRyIjp7ImF1dG9ydW4iOnRydWUsImNhY2hlIjp0cnVlLCJjb250ZXh0Ijoic2V0dXAiLCJlY2hvIjpmYWxzZSwiZWRpdCI6ZmFsc2UsImV2YWwiOnRydWUsImluY2x1ZGUiOmZhbHNlLCJvdXRwdXQiOmZhbHNlLCJ3YXJuaW5nIjpmYWxzZX0sImNvZGUiOiJwYWxtZXJwZW5ndWlucyA8LSByZWFkLmNzdihcImRhdGEvcGFsbWVycGVuZ3VpbnMuY3N2XCIpXG5mcmllbmRzX2luZm8gPC0gcmVhZC5jc3YoXCJkYXRhL2ZyaWVuZHNfaW5mby5jc3ZcIilcbmZyaWVuZHNfaW5mbyRhaXJfZGF0ZSA8LSBhcy5EYXRlKGZyaWVuZHNfaW5mbyRhaXJfZGF0ZSlcbmZyaWVuZHNfaW5mbyRzZWFzb24gPC0gYXMuZmFjdG9yKGZyaWVuZHNfaW5mbyRzZWFzb24pIn0=
+eyJhdHRyIjp7ImF1dG9ydW4iOnRydWUsImNvbnRleHQiOiJzZXR1cCIsImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiaW5jbHVkZSI6ZmFsc2UsIm91dHB1dCI6ZmFsc2UsIndhcm5pbmciOmZhbHNlfSwiY29kZSI6InBhbG1lcnBlbmd1aW5zIDwtIHJlYWQuY3N2KFwiZGF0YS9wYWxtZXJwZW5ndWlucy5jc3ZcIilcbnBhbG1lcnBlbmd1aW5zJHNwZWNpZXMgPC0gYXMuZmFjdG9yKHBhbG1lcnBlbmd1aW5zJHNwZWNpZXMpXG5wYWxtZXJwZW5ndWlucyRpc2xhbmQgPC0gYXMuZmFjdG9yKHBhbG1lcnBlbmd1aW5zJGlzbGFuZClcbnBhbG1lcnBlbmd1aW5zJHNleCA8LSBhcy5mYWN0b3IocGFsbWVycGVuZ3VpbnMkc2V4KVxuZnJpZW5kc19pbmZvIDwtIHJlYWQuY3N2KFwiZGF0YS9mcmllbmRzX2luZm8uY3N2XCIpXG5mcmllbmRzX2luZm8kYWlyX2RhdGUgPC0gYXMuRGF0ZShmcmllbmRzX2luZm8kYWlyX2RhdGUpXG5mcmllbmRzX2luZm8kc2Vhc29uIDwtIGFzLmZhY3RvcihmcmllbmRzX2luZm8kc2Vhc29uKSJ9
 </script>
 </div>
 </div>
@@ -304,7 +303,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsIndhcm5pbmciOmZhbHNlfSwiY29kZSI6ImNv
 </section>
 <section class="slide level2">
 
-<p><code>summary()</code> provides a statistical overview of each column, including min, max, mean, and quartiles for numeric data.</p>
+<p><code>summary()</code> provides a statistical overview of each column, including min, max, mean, and quartiles for numeric data, and counts for categories.</p>
 <div class="cell">
 <div>
 <div id="webr-5" class="exercise-cell">
@@ -354,7 +353,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsIndhcm5pbmciOmZhbHNlfSwiY29kZSI6Imdn
 <div class="callout-content">
 <pre><code>ggplot(palmerpenguins, aes(bill_length_mm, body_mass_g)) +
   geom_point()
-  
+
 ggplot(palmerpenguins) +
   geom_point(aes(bill_length_mm, body_mass_g))</code></pre>
 </div>
@@ -422,7 +421,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsIndhcm5pbmciOmZhbHNlfSwiY29kZSI6IiJ9
 <p><span class="proof-title"><em>Solution</em>. </span></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">head</span>(friends_info)</span>
 <span id="cb4-2"><a href=""></a></span>
-<span id="cb4-3"><a href=""></a><span class="fu">ggplot</span>(friends_info, <span class="fu">aes</span>(<span class="at">x =</span> air_date, <span class="at">y =</span> us_views_millions)) <span class="sc">+</span>  </span>
+<span id="cb4-3"><a href=""></a><span class="fu">ggplot</span>(friends_info, <span class="fu">aes</span>(<span class="at">x =</span> air_date, <span class="at">y =</span> us_views_millions)) <span class="sc">+</span></span>
 <span id="cb4-4"><a href=""></a>  <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
@@ -438,7 +437,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsIndhcm5pbmciOmZhbHNlfSwiY29kZSI6IiJ9
 
 </div>
 <script type="webr-9-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsIndhcm5pbmciOmZhbHNlfSwiY29kZSI6ImdncGxvdChmcmllbmRzX2luZm8sIGFlcyh4ID0gYWlyX2RhdGUsIHkgPSB1c192aWV3c19taWxsaW9ucykpICsgIFxuICBnZW9tX2xpbmUoKSArXG4gIGdlb21fcG9pbnQoKSArXG4gIGdlb21fc21vb3RoKCkifQ==
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsIndhcm5pbmciOmZhbHNlfSwiY29kZSI6ImdncGxvdChmcmllbmRzX2luZm8sIGFlcyh4ID0gYWlyX2RhdGUsIHkgPSB1c192aWV3c19taWxsaW9ucykpICtcbiAgZ2VvbV9saW5lKCkgK1xuICBnZW9tX3BvaW50KCkgK1xuICBnZW9tX3Ntb290aCgpIn0=
 </script>
 </div>
 </div>
@@ -533,7 +532,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsIndhcm5pbmciOmZhbHNlfSwiY29kZSI6IiJ9
 
 </div>
 <script type="webr-14-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsIndhcm5pbmciOmZhbHNlfSwiY29kZSI6ImdncGxvdChmcmllbmRzX2luZm8sIGFlcyh4ID0gYWlyX2RhdGUsIHkgPSB1c192aWV3c19taWxsaW9ucykpICsgIFxuICBnZW9tX2xpbmUoKSJ9
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsIndhcm5pbmciOmZhbHNlfSwiY29kZSI6ImdncGxvdChmcmllbmRzX2luZm8sIGFlcyh4ID0gYWlyX2RhdGUsIHkgPSB1c192aWV3c19taWxsaW9ucykpICtcbiAgZ2VvbV9saW5lKCkifQ==
 </script>
 </div>
 </div>
@@ -566,7 +565,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsIndhcm5pbmciOmZhbHNlfSwiY29kZSI6Imdn
 
 </div>
 <script type="webr-16-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsIndhcm5pbmciOmZhbHNlfSwiY29kZSI6ImdncGxvdChmcmllbmRzX2luZm8sIGFlcyh4ID0gYWlyX2RhdGUsIHkgPSB1c192aWV3c19taWxsaW9ucykpICsgIFxuICBnZW9tX2xpbmUoKSJ9
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsIndhcm5pbmciOmZhbHNlfSwiY29kZSI6ImdncGxvdChmcmllbmRzX2luZm8sIGFlcyh4ID0gYWlyX2RhdGUsIHkgPSB1c192aWV3c19taWxsaW9ucykpICtcbiAgZ2VvbV9saW5lKCkifQ==
 </script>
 </div>
 </div>
@@ -577,26 +576,27 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsIndhcm5pbmciOmZhbHNlfSwiY29kZSI6Imdn
 1. Run the code.<br>
 2. Add <code>limits = c(0, 100)</code> inside <code>scale_y_continuous()</code> and rerun<br>
 3. Change the numbers in <code>limits</code> and see what happens to the line</p>
+<p>Values outside the limits are dropped, so parts of the line can disappear.</p>
 <div class="cell">
 <div>
 <div id="webr-17" class="exercise-cell">
 
 </div>
 <script type="webr-17-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsIndhcm5pbmciOmZhbHNlfSwiY29kZSI6ImdncGxvdChmcmllbmRzX2luZm8sIGFlcyh4ID0gYWlyX2RhdGUsIHkgPSB1c192aWV3c19taWxsaW9ucykpICsgIFxuICBnZW9tX2xpbmUoKSArXG4gIHNjYWxlX3lfY29udGludW91cygpIn0=
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsIndhcm5pbmciOmZhbHNlfSwiY29kZSI6ImdncGxvdChmcmllbmRzX2luZm8sIGFlcyh4ID0gYWlyX2RhdGUsIHkgPSB1c192aWV3c19taWxsaW9ucykpICtcbiAgZ2VvbV9saW5lKCkgK1xuICBzY2FsZV95X2NvbnRpbnVvdXMoKSJ9
 </script>
 </div>
 </div>
 </section>
 <section class="slide level2">
 
-<h3 id="guideline-5-data-transformations-and-carefully-chosen-graph-aspect-ratios-can-be-used-to-emphasize-rates-of-change-for-time-series-data">Guideline 5: Data transformations and carefully chosen graph aspect ratios can be used to emphasize rates of change for time-series data</h3>
+<h3 id="extra-log-scales-for-wide-ranges">Extra: Log scales for wide ranges</h3>
 
 <img data-src="images/guideline5.jpg" style="width:40.0%" class="r-stretch"></section>
 <section class="slide level2">
 
-<p>While Guideline 5 focuses on time series, the same principle applies to any variables with large ranges. Let’s look at ggplot2’s <a href="https://ggplot2.tidyverse.org/reference/msleep.html">mammals sleep dataset</a>.&nbsp;</p>
-<p>Run the following code and notice that it’s impossible to distinguish the points close to 0 when using continuous scales</p>
+<p>This extra builds on Guideline 5 of the ten guidelines, which we skipped in the talk: data transformations and carefully chosen aspect ratios can emphasize rates of change in time series. The same idea applies to any variables with large ranges. Let’s look at ggplot2’s <a href="https://ggplot2.tidyverse.org/reference/msleep.html">mammals sleep dataset</a>.</p>
+<p>Run the following code and notice that it’s impossible to distinguish the points close to 0 when using linear scales</p>
 <div class="cell">
 <div>
 <div id="webr-18" class="exercise-cell">
@@ -645,7 +645,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsIndhcm5pbmciOmZhbHNlfSwiY29kZSI6IiMg
 
 <h3 id="guideline-6-plot-overlapping-points-in-a-way-that-density-differences-become-apparent-in-scatter-plots">Guideline 6: Plot overlapping points in a way that density differences become apparent in scatter plots</h3>
 
-<img data-src="images/guideline6.jpg" class="r-stretch"></section>
+<img data-src="images/guideline6.jpg" style="width:40.0%" class="r-stretch"></section>
 <section class="slide level2">
 
 <p>Let’s plot <code>imdb_rating</code> and <code>us_views_millions</code> from <code>friends_info</code> with really big points so that they overlap a lot</p>
@@ -681,7 +681,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsIndhcm5pbmciOmZhbHNlfSwiY29kZSI6Imdn
 
 <h3 id="pitfall-vertical-axis-text">Pitfall: Vertical axis text</h3>
 
-<img data-src="images/pitfall_verticaltext.jpg" class="r-stretch"></section>
+<img data-src="images/pitfall_verticaltext.jpg" style="width:40.0%" class="r-stretch"></section>
 <section class="slide level2">
 
 <p>Run the code and see how the labels on the x-axis overlap<br>
@@ -703,10 +703,10 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsIndhcm5pbmciOmZhbHNlfSwiY29kZSI6Imdn
 
 <h3 id="pitfall-rainbow-color-scale">Pitfall: Rainbow color scale</h3>
 
-<img data-src="images/pitfall_rainbow.jpg" class="r-stretch"></section>
+<img data-src="images/pitfall_rainbow.jpg" style="width:40.0%" class="r-stretch"></section>
 <section class="slide level2">
 
-<p>Run the code to see a heatmap with the default rainbow scale in R</p>
+<p>Run the code to see a heatmap with base R’s <code>rainbow()</code> palette</p>
 <div class="cell">
 <div>
 <div id="webr-24" class="exercise-cell">
@@ -720,16 +720,16 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsIndhcm5pbmciOmZhbHNlfSwiY29kZSI6Imdn
 </section>
 <section class="slide level2">
 
-<p>Run the code to see a better rainbow scale<br>
-1. Replace <code>turbo</code> with one of the other scale names: viridis, magma, plasma, mako<br>
-2. Rerun the code</p>
+<p>Run the code to see turbo, an improved rainbow scale<br>
+1. Replace <code>turbo</code> with a perceptually uniform scale: viridis, magma, plasma or mako<br>
+2. Rerun the code, then try removing <code>direction = -1</code></p>
 <div class="cell">
 <div>
 <div id="webr-25" class="exercise-cell">
 
 </div>
 <script type="webr-25-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsIndhcm5pbmciOmZhbHNlfSwiY29kZSI6ImdncGxvdChmcmllbmRzX2luZm8pICtcbiAgZ2VvbV90aWxlKGFlcyh4ID0gZXBpc29kZSwgeSA9IHNlYXNvbiwgZmlsbCA9IGltZGJfcmF0aW5nKSkgK1xuICAgIHNjYWxlX2ZpbGxfdmlyaWRpc19jKG9wdGlvbiA9IFwidHVyYm9cIiwgZGlyZWN0aW9uID0gLTEpIn0=
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsIndhcm5pbmciOmZhbHNlfSwiY29kZSI6ImdncGxvdChmcmllbmRzX2luZm8pICtcbiAgZ2VvbV90aWxlKGFlcyh4ID0gZXBpc29kZSwgeSA9IHNlYXNvbiwgZmlsbCA9IGltZGJfcmF0aW5nKSkgK1xuICBzY2FsZV9maWxsX3ZpcmlkaXNfYyhvcHRpb24gPSBcInR1cmJvXCIsIGRpcmVjdGlvbiA9IC0xKSJ9
 </script>
 </div>
 </div>
@@ -737,19 +737,22 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsIndhcm5pbmciOmZhbHNlfSwiY29kZSI6Imdn
 <section class="slide level2">
 
 
-<img data-src="images/fireworks.gif" class="r-stretch quarto-figure-center"><p class="caption">That’s all! But if you have time, one last challenge awaits on the next slide!</p></section>
+<img data-src="images/fireworks.gif" class="r-stretch quarto-figure-center"><p class="caption">That’s all! But if you have time, one last challenge awaits on the next slides!</p></section>
 <section class="slide level2">
 
 <h3 id="final-exercise-putting-it-all-together">Final exercise: Putting it all together</h3>
 
-<img data-src="images/meme.jpg" class="r-stretch"></section>
+<img data-src="images/meme.jpg" style="width:40.0%" class="r-stretch"></section>
 <section class="slide level2">
 
-<p>Create a scatter plot using the <code>palmerpenguins</code> dataset that shows:<br>
-- <code>bill_length_mm</code> vs <code>bill_depth_mm</code><br>
-- <code>body_mass_g</code> as point size&nbsp;and <code>species</code> as color<br>
-- Use a viridis color scale<br>
-- Add a trend line for each species</p>
+<p>Create a scatter plot using the <code>palmerpenguins</code> dataset that shows:</p>
+<ul>
+<li><code>bill_length_mm</code> vs <code>bill_depth_mm</code></li>
+<li><code>body_mass_g</code> as point size</li>
+<li><code>species</code> as color</li>
+<li>a viridis color scale</li>
+<li>a trend line for each species</li>
+</ul>
 <div class="panel-tabset">
 <ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">Exercise</a></li><li><a href="#tabset-3-2">Hint</a></li><li><a href="#tabset-3-3">Solution</a></li></ul>
 <div class="tab-content">
@@ -779,7 +782,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsIndhcm5pbmciOmZhbHNlfSwiY29kZSI6IiJ9
 <ol type="1">
 <li>Start with <code>ggplot(palmerpenguins, aes(...))</code></li>
 <li>Use <code>geom_point()</code> for the scatter plot</li>
-<li>Map <code>species</code> to <code>color</code> and <code>body_mass_g</code> to <code>size</code> in <code>aes()</code></li>
+<li>Map <code>species</code> to <code>color</code> in <code>ggplot(aes())</code> and <code>body_mass_g</code> to <code>size</code> in <code>geom_point(aes())</code></li>
 <li>Use <code>scale_color_viridis_d()</code> for the color scale</li>
 <li>Add <code>geom_smooth()</code> for trend lines</li>
 </ol>
@@ -791,13 +794,12 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsIndhcm5pbmciOmZhbHNlfSwiY29kZSI6IiJ9
 <div id="tabset-3-3">
 <div class="proof solution">
 <p><span class="proof-title"><em>Solution</em>. </span></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">ggplot</span>(palmerpenguins, </span>
-<span id="cb6-2"><a href=""></a>       <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm, </span>
-<span id="cb6-3"><a href=""></a>           <span class="at">color =</span> species, <span class="at">size =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb6-4"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb6-5"><a href=""></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">group =</span> species)) <span class="sc">+</span></span>
-<span id="cb6-6"><a href=""></a>  <span class="fu">scale_color_viridis_d</span>() <span class="sc">+</span></span>
-<span id="cb6-7"><a href=""></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">ggplot</span>(palmerpenguins,</span>
+<span id="cb6-2"><a href=""></a>       <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm, <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb6-3"><a href=""></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> body_mass_g), <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb6-4"><a href=""></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
+<span id="cb6-5"><a href=""></a>  <span class="fu">scale_color_viridis_d</span>() <span class="sc">+</span></span>
+<span id="cb6-6"><a href=""></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>

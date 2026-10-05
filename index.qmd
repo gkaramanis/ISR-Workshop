@@ -385,7 +385,7 @@ ggplot(msleep, aes(x = bodywt)) +
 We can use logarithmic scales for both x and y to better reveal patterns across different magnitudes of weight.
 
 1. Run the code\
-2. Remove one of the lines with `scale_*_log10()` and rerun the code
+2. Delete either the line `scale_x_log10() +` or the line `scale_y_log10() +` and rerun the code. That axis is linear again, and most points bunch up near zero on it
 
 ```{webr}
 #| warning: false
